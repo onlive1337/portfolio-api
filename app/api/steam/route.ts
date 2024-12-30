@@ -2,6 +2,19 @@ import { getCurrentGame } from '../../lib/steam';
 
 export const runtime = 'edge';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 export async function GET() {
   try {
     const game = await getCurrentGame();
@@ -11,8 +24,8 @@ export async function GET() {
       {
         status: 200,
         headers: {
+          ...corsHeaders,
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://onlive.is-a.dev',
         },
       }
     );
@@ -23,8 +36,8 @@ export async function GET() {
       {
         status: 200,
         headers: {
+          ...corsHeaders,
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://onlive.is-a.dev',
         },
       }
     );
