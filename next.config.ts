@@ -1,7 +1,18 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'standalone',
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: 'https://onlive.is-a.dev' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type' },
+        ],
+      },
+    ]
+  },
+}
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = nextConfig

@@ -1,0 +1,15 @@
+{
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/api/$1" }
+    ],
+    "headers": [
+      {
+        "source": "/api/(.*)",
+        "headers": [
+          { "key": "Access-Control-Allow-Origin", "value": "https://onlive.is-a.dev" },
+          { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS" },
+          { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+        ]
+      }
+    ]
+  }
