@@ -3,7 +3,7 @@ import { getPinnedRepos } from '../../lib/github';
 
 export const runtime = 'edge';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const repos = await getPinnedRepos();
     

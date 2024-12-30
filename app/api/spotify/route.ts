@@ -1,9 +1,10 @@
 import { type NextRequest } from 'next/server';
 import { getNowPlaying } from '../../lib/spotify';
+import type { SpotifyTrack } from '../../types';
 
 export const runtime = 'edge';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const response = await getNowPlaying();
 
@@ -20,13 +21,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const song = await response.json();
+    const song = (await response.json()) as SpotifyTrack;
 
     return new Response(
       JSON.stringify({
         isPlaying: song.is_playing,
         title: song.item?.name,
-        artist: song.item?.artists.map((artist: any) => artist.name).join(', '),
+        artist: song.item?.artists.map(artist => artist.name).join(', '),
         album: song.item?.album?.name,
         albumImageUrl: song.item?.album?.images[0]?.url,
         songUrl: song.item?.external_urls?.spotify,
