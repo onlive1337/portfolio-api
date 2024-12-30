@@ -1,4 +1,3 @@
-import { type NextRequest } from 'next/server';
 import { getCurrentGame } from '../../lib/steam';
 
 export const runtime = 'edge';

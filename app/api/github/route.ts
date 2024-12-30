@@ -1,4 +1,3 @@
-import { type NextRequest } from 'next/server';
 import { getPinnedRepos } from '../../lib/github';
 
 export const runtime = 'edge';

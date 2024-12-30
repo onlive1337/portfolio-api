@@ -1,4 +1,3 @@
-import { type NextRequest } from 'next/server';
 import { getNowPlaying } from '../../lib/spotify';
 import type { SpotifyTrack } from '../../types';
 
