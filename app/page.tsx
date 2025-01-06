@@ -13,7 +13,11 @@ export default function Home() {
         
         <h3>GET /api/github</h3>
         <p>Returns pinned repositories from GitHub</p>
-  
+        
+        <h3>GET /api/discord</h3>
+        <p>Returns discord status</p>
+        
+
         <p>Note: This API is intended for use with https://onlive.is-a.dev</p>
       </div>
     )
