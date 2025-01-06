@@ -8,12 +8,19 @@ export async function GET() {
     if (!response.ok) throw new Error('Failed to fetch');
     const data = await response.json();
     
+    if (!data.success) {
+      throw new Error('Lanyard API error');
+    }
+
     return NextResponse.json({
-      status: data.data.discord_status,
-      activities: data.data.activities
+      status: data.data.discord_status || 'offline',
+      activities: data.data.activities || []
     });
   } catch (error) {
-    console.error('Lanyard API error:', error);
-    return NextResponse.json({ error: 'Failed to fetch status' }, { status: 500 });
+    console.error('Discord status error:', error);
+    return NextResponse.json({
+      status: 'offline',
+      activities: []
+    });
   }
 }
