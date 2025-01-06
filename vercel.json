@@ -4,11 +4,11 @@
       "source": "/api/(.*)",
       "headers": [
         {
-          "key": "Access-Control-Allow-Credentials",
-          "value": "true"
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://onlive.is-a.dev"
         },
         {
-          "key": "Access-Control-Allow-Methods",
+          "key": "Access-Control-Allow-Methods", 
           "value": "GET, POST, OPTIONS"
         },
         {

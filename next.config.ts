@@ -1,26 +1,25 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  async headers() {
+  headers: async () => {
     return [
       {
-        source: '/api/:path*',
+        source: "/api/:path*",
         headers: [
           {
-            key: 'Access-Control-Allow-Origin',
-            value: 'https://onlive.is-a.dev, http://localhost:3000'
+            key: "Access-Control-Allow-Origin",
+            value: "https://onlive.is-a.dev"
           },
           {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST'
+            key: "Access-Control-Allow-Methods",
+            value: "GET, POST, OPTIONS"
           },
           {
-            key: 'Access-Control-Allow-Headers',
-            value: 'Content-Type'
+            key: "Access-Control-Allow-Headers",
+            value: "Content-Type"
           }
         ]
       }
-    ]
+    ];
   }
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
