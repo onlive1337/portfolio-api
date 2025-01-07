@@ -6,7 +6,7 @@ const nextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://onlive.is-a.dev"
+            value: "*"
           },
           {
             key: "Access-Control-Allow-Methods",
