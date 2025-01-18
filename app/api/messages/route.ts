@@ -1,7 +1,6 @@
-// app/api/messages/route.ts
 import { NextResponse } from 'next/server';
 import { supabase } from '../../lib/supabase';
-import type { CreateMessageRequest, CreateMessageResponse, Message } from '../../types/messages';
+import type { CreateMessageRequest, Message } from '../../types/messages';
 
 export const runtime = 'edge';
 
