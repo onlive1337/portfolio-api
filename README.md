@@ -7,6 +7,7 @@ Backend API service for personal portfolio website that provides realtime data a
 - **Realtime Integration**
   - Discord presence status
   - Spotify current track
+  - Last.fm current track
   - Steam gaming activity
   - GitHub pinned repositories
   - Anonymous messaging system
@@ -55,6 +56,24 @@ Returns currently playing track info from Spotify.
   "albumImageUrl": "https://...",
   "songUrl": "https://..."
 }
+```
+
+### Last.fm Current Track
+```
+GET /api/lastfm
+```
+Returns currently playing track info from lastfm.
+
+**Response Example:**
+```json
+{
+  "name": "Track Name",
+  "artist": "Artist Name",
+  "album": "Album Name",
+  "albumImageUrl": "https://...",
+  "url": "https://...",
+  "isNowPlaying": true
+},
 ```
 
 ### Steam Activity
@@ -148,6 +167,10 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_key
 SPOTIFY_CLIENT_ID=your_spotify_client_id
 SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
 SPOTIFY_REFRESH_TOKEN=your_spotify_refresh_token
+
+# Last.fm
+LASTFM_USERNAME=your_lastfm_username
+LASTFM_API_KEY=your_lastfm_apikey
 
 # Steam
 STEAM_API_KEY=your_steam_api_key
