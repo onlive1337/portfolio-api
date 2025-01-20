@@ -45,3 +45,13 @@ export interface SpotifyArtist {
       };
     };
   }
+
+  export interface LastFmTrack {
+    name: string; 
+    artist: string; 
+    album: string; 
+    albumImageUrl: string; 
+    url: string;
+    isNowPlaying: boolean;
+    timestamp?: string; 
+  }
