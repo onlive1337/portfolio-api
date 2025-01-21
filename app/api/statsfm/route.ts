@@ -1,30 +1,36 @@
 import { getCurrentTrack } from '../../lib/statsfm';
-import type { StatsFmTrack } from '../../types';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export async function GET() {
   try {
-    const track: StatsFmTrack | null = await getCurrentTrack();
-
+    const track = await getCurrentTrack();
+    
     return new Response(
-      JSON.stringify({ track }),
+      JSON.stringify(track),
       {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
-        },
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, OPTIONS'
+        }
       }
     );
-  } catch (error) {
-    console.error('Error fetching Stats.fm data:', error);
+  } catch (err) {
+    const error = err as Error;
+    console.error('Route error:', error);
+    
     return new Response(
-      JSON.stringify({ track: null }),
+      JSON.stringify({ 
+        error: error?.message || 'An unknown error occurred' 
+      }),
       {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
-        },
+          'Access-Control-Allow-Origin': '*'
+        }
       }
     );
   }
