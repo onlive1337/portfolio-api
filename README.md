@@ -1,6 +1,6 @@
 # Portfolio API
 
-Backend API service for personal portfolio website that provides realtime data about Discord status, Spotify currently playing track, Steam gaming activity, GitHub repositories, and anonymous messaging system.
+Backend API service for personal portfolio website that provides realtime data about Discord status, Spotify currently playing track, Steam gaming activity, osu! statistics, GitHub repositories, and anonymous messaging system.
 
 ## 🚀 Features
 
@@ -9,6 +9,7 @@ Backend API service for personal portfolio website that provides realtime data a
   - Spotify current track
   - Last.fm current track
   - Steam gaming activity
+  - osu! statistics and recent activity
   - GitHub pinned repositories
   - Anonymous messaging system
   - Site analytics
@@ -58,22 +59,40 @@ Returns currently playing track info from Spotify.
 }
 ```
 
-### Last.fm Current Track
+### osu! Statistics
 ```
-GET /api/lastfm
+GET /api/osu
 ```
-Returns currently playing track info from lastfm.
+Returns player statistics and recent activity from osu!.
 
 **Response Example:**
 ```json
 {
-  "name": "Track Name",
-  "artist": "Artist Name",
-  "album": "Album Name",
-  "albumImageUrl": "https://...",
-  "url": "https://...",
-  "isNowPlaying": true
-},
+  "user": {
+    "username": "player_name",
+    "statistics": {
+      "pp": 5000,
+      "global_rank": 10000,
+      "level": {
+        "current": 100,
+        "progress": 50
+      },
+      "hit_accuracy": 98.5,
+      "play_count": 10000,
+      "total_hits": 1000000
+    },
+    "country_code": "US",
+    "avatar_url": "https://..."
+  },
+  "recentActivity": {
+    "beatmap": {
+      "title": "Map Name",
+      "difficulty_rating": 5.5
+    },
+    "rank": "S",
+    "pp": 250
+  }
+}
 ```
 
 ### Stats.fm Current Track
@@ -85,23 +104,40 @@ Returns currently playing track info from statsfm.
 **Response Example:**
 ```json
 {
-  "track": {
-    "name": "Track Name",
-    "artists": "Artist Name",
-    "album": "Album Name",
-    "albumImageUrl": "https://...",
-    "url": "https://...",
-    "isPlaying": true,
-    "progressMs": 00000,
-    "platform": "SPOTIFY",
-    "spotifyPopularity": 00,
-    "explicit": false,
-    "durationMs": 11111,
-    "date": "yyyy-mm-00T00:00:00.000Z"
-  }
+  "name": "Track Name",
+  "artists": "Artist Name",
+  "album": "Album Name",
+  "albumImageUrl": "https://...",
+  "url": "https://...",
+  "isPlaying": true,
+  "progressMs": 00000,
+  "platform": "SPOTIFY",
+  "explicit": false,
+  "durationMs": 11111
 }
 ```
+# Last.fm Track
+```
+GET /api/lastfm
+```
+Returns currently playing or last played track info from Last.fm.
 
+**Response Example:**
+```json
+{
+  "tracks": [{
+    "name": "Track Name",
+    "artist": "Artist Name",
+    "album": "Album Name",
+    "albumImageUrl": "https://lastfm.freetls.fastly.net/i/u/300x300/...",
+    "url": "https://www.last.fm/music/Artist/_/Track",
+    "isNowPlaying": true,
+    "timestamp": "1622547600"
+  }]
+}
+
+
+```
 ### Steam Activity
 ```
 GET /api/steam
@@ -131,42 +167,13 @@ Returns pinned repositories from GitHub profile.
   {
     "name": "repository-name",
     "description": "Repository description",
-    "html_url": "https://github.com/onlive1337/repository-name",
+    "html_url": "https://github.com/username/repository-name",
     "stargazers_count": 5,
     "language": "TypeScript",
     "topics": ["nextjs", "typescript", "api"]
   }
 ]
 ```
-
-### Messages
-```
-GET /api/messages
-```
-Returns list of recent anonymous messages.
-
-```
-POST /api/messages
-```
-Create new anonymous message.
-
-**Request Body:**
-```json
-{
-  "content": "Message text"
-}
-```
-
-### Analytics
-```
-GET /api/analytics
-```
-Returns site analytics data.
-
-```
-POST /api/analytics
-```
-Record new site visit.
 
 ## 🛠️ Development
 
@@ -178,6 +185,7 @@ Record new site visit.
 - Discord Developer Application
 - Spotify Developer Account
 - Steam API Key
+- osu! API credentials
 - GitHub Personal Access Token
 
 ### Environment Variables
@@ -205,11 +213,13 @@ STATSFM_USERNAME=your_statsfm_username
 STEAM_API_KEY=your_steam_api_key
 STEAM_ID=your_steam_id
 
+# osu!
+OSU_CLIENT_ID=your_osu_client_id
+OSU_CLIENT_SECRET=your_osu_client_secret
+OSU_USERNAME=your_osu_username
+
 # GitHub
 GITHUB_TOKEN=your_github_personal_access_token
-
-# API Config
-CORS_ORIGIN=https://your-frontend-domain.com
 ```
 
 ### Installation
@@ -238,7 +248,7 @@ The API will be available at `http://localhost:3000`
 
 ## 📦 Deployment
 
-The API is designed to be deployed on Vercel:
+Deploy to Vercel:
 
 1. Push your code to GitHub
 2. Connect repository to Vercel
@@ -251,7 +261,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome! Feel free to check [issues page](https://github.com/onlive1337/portfolio-api/issues).
+Contributions, issues and feature requests are welcome!
 
 1. Fork the project
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -262,6 +272,5 @@ Contributions, issues and feature requests are welcome! Feel free to check [issu
 ## 📞 Contact
 
 Developer - [@onswix](https://t.me/onswix)
-GitHub - [@onlive1337](https://github.com/onlive1337)
 
 Project Link: [https://github.com/onlive1337/portfolio-api](https://github.com/onlive1337/portfolio-api)
