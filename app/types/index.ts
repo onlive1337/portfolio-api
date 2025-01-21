@@ -55,3 +55,18 @@ export interface SpotifyArtist {
     isNowPlaying: boolean;
     timestamp?: string; 
   }
+
+  export interface StatsFmTrack {
+    name: string;
+    artists: string;
+    album: string;
+    albumImageUrl: string;
+    url: string;
+    isPlaying: boolean;
+    progressMs: number;
+    platform: string;
+    spotifyPopularity: number;
+    explicit: boolean;
+    durationMs: number;
+    date: string | null;
+  }
