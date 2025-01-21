@@ -1,4 +1,4 @@
-const STATSFM_USERNAME = process.env.STATSFM_USERNAME || 'onlive';
+const STATSFM_USERNAME = process.env.STATSFM_USERNAME;
 
 export async function getCurrentTrack() {
   const url = `https://api.stats.fm/api/v1/users/${STATSFM_USERNAME}/streams/current`;
