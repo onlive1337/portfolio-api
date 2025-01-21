@@ -7,6 +7,12 @@ export default function Home() {
         
         <h3>GET /api/spotify</h3>
         <p>Returns current playing track from Spotify</p>
+
+        <h3>GET /api/lastfm</h3>
+        <p>Returns current playing track from lastfm</p>
+
+        <h3>GET /api/statsfm</h3>
+        <p>Returns current playing track from Stats.fm</p>
         
         <h3>GET /api/steam</h3>
         <p>Returns current or recent game activity from Steam</p>

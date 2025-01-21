@@ -76,6 +76,32 @@ Returns currently playing track info from lastfm.
 },
 ```
 
+### Stats.fm Current Track
+```
+GET /api/statsfm
+```
+Returns currently playing track info from statsfm.
+
+**Response Example:**
+```json
+{
+  "track": {
+    "name": "Track Name",
+    "artists": "Artist Name",
+    "album": "Album Name",
+    "albumImageUrl": "https://...",
+    "url": "https://...",
+    "isPlaying": true,
+    "progressMs": 00000,
+    "platform": "SPOTIFY",
+    "spotifyPopularity": 00,
+    "explicit": false,
+    "durationMs": 11111,
+    "date": "yyyy-mm-00T00:00:00.000Z"
+  }
+}
+```
+
 ### Steam Activity
 ```
 GET /api/steam
@@ -171,6 +197,9 @@ SPOTIFY_REFRESH_TOKEN=your_spotify_refresh_token
 # Last.fm
 LASTFM_USERNAME=your_lastfm_username
 LASTFM_API_KEY=your_lastfm_apikey
+
+# Stats.fm
+STATSFM_USERNAME=your_statsfm_username
 
 # Steam
 STEAM_API_KEY=your_steam_api_key
