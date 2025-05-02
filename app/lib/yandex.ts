@@ -1,5 +1,35 @@
 const YANDEX_API_TOKEN = process.env.YANDEX_API_TOKEN;
 
+interface YandexArtist {
+  id: number;
+  name: string;
+}
+
+interface YandexAlbum {
+  id: number;
+  title: string;
+}
+
+interface YandexTrackProgress {
+  duration: number;
+  position: number;
+  loaded: number;
+}
+
+interface YandexTrackResponse {
+  ok: boolean;
+  track: {
+    title: string;
+    artists: YandexArtist[];
+    albums: YandexAlbum[];
+    albumArt: string;
+    status: string;
+    durationMs: number;
+    progress: YandexTrackProgress;
+    realId: string;
+  };
+}
+
 export async function getCurrentYandexTrack() {
   try {
     const response = await fetch("https://ru-node-1.pulsesync.dev/api/v1/track/status", {
@@ -15,7 +45,7 @@ export async function getCurrentYandexTrack() {
       throw new Error(`Failed to fetch Yandex Music data: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as YandexTrackResponse;
     
     if (!data.ok || !data.track) {
       return null;
@@ -23,7 +53,7 @@ export async function getCurrentYandexTrack() {
 
     return {
       name: data.track.title || '',
-      artists: data.track.artists?.map((artist: any) => artist.name).join(', ') || '',
+      artists: data.track.artists?.map((artist: YandexArtist) => artist.name).join(', ') || '',
       album: data.track.albums?.[0]?.title || '',
       albumImageUrl: data.track.albumArt || '',
       url: `https://music.yandex.ru/album/${data.track.albums?.[0]?.id}/track/${data.track.realId}`,
