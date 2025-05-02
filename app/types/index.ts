@@ -70,3 +70,16 @@ export interface SpotifyArtist {
     durationMs: number;
     date: string | null;
   }
+
+export interface YandexTrack {
+  name: string;
+  artists: string;
+  album: string;
+  albumImageUrl: string;
+  url: string;
+  isPlaying: boolean;
+  progressMs: number;
+  durationMs: number;
+  explicit: boolean;
+  platform: string;
+}
