@@ -28,7 +28,7 @@ export interface JoinGameRequest {
   player_name?: string;
 }
 
-export interface MoveRequest extends CheckersMove {}
+export type MoveRequest = CheckersMove;
 
 export interface CheckersGameState {
   game: CheckersGame;
