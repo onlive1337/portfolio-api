@@ -19,9 +19,10 @@ export async function OPTIONS() {
 
 export async function POST(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
     const body = (await req.json()) as JoinGameRequest;
     
     const { data: gameData, error: fetchError } = await supabase

@@ -19,9 +19,11 @@ export async function OPTIONS() {
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const params = await context.params;
+    
     const { data: gameData, error: gameError } = await supabase
       .from('checkers_games')
       .select('*')
